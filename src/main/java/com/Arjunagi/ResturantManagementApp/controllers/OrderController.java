@@ -44,7 +44,4 @@ public class OrderController {
     public String deleteOrderById( AuthInpDto authInpDto,@PathVariable Integer orderId){
         return orderService.deleteOrderById(authInpDto,orderId);
     }
-
-
-
 }

@@ -13,14 +13,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-
+@Validated
 public class UserController {
     @Autowired
     UserService userService;
 
     @PostMapping("/signup/npc/user")
     public String AddNPCUser(  @RequestBody @Valid UserRegDto userRegDto){
-        return userService.AddNPCUser(userRegDto);
+        String message=userService.AddNPCUser(userRegDto);
+        return message;
     }
     @PostMapping("/signup/admin")
     public String AddAdminUser( @RequestBody @Valid UserRegDto userRegDto){
@@ -32,8 +33,9 @@ public class UserController {
     }
 
     @DeleteMapping("/user/signout")
-    private String logoutUser( @RequestBody AuthInpDto authInpDto){
-        return userService.logoutUser(authInpDto);
+    private String logoutUser( @RequestBody @Valid AuthInpDto authInpDto){
+        String mess=userService.logoutUser(authInpDto);
+        return mess;
     }
 
     @GetMapping("/user")
@@ -50,6 +52,4 @@ public class UserController {
     public String deleteUserById( @RequestBody AuthInpDto authInpDto,@PathVariable Integer id){
         return userService.deleteUserById(authInpDto,id);
     }
-
-
 }
